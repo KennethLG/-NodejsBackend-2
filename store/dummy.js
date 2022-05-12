@@ -1,17 +1,15 @@
 const db = {
-  'user': [
-      { id: 1, name: 'Carlos' },
-  ],
+  user: [{ id: "1", name: "Carlos" }],
 };
 
-function list(table) {
+const list = (table) => {
   return db[table];
-}
+};
 
-function get(table, id) {
-  let col = list(table);
-  return col.filter(item => item.id === id)[0] || null;
-}
+const get = async (table, id) => {
+  let col = await list(table);
+  return col.find((item) => item.id === id) || null;
+};
 
 function upsert(table, data) {
   db[collection].push(data);

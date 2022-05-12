@@ -2,10 +2,17 @@ const store = require("../../../store/dummy");
 
 const TABLE = "user";
 
-const list = () => {
-  return store.list(TABLE);
-};
+module.exports = (injectedStore = store) => {
+  const list = () => {
+    return injectedStore.list(TABLE);
+  };
 
-module.exports = {
-  list,
+  const get = (id) => {
+    return injectedStore.get(TABLE, id);
+  };
+
+  return {
+    list,
+    get,
+  };
 };
