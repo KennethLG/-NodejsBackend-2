@@ -28,7 +28,7 @@ const upsert = async (req, res) => {
     const user = await Controller.upsert(req.body);
     response.success(req, res, user, 201);
   } catch (error) {
-    response.error(req, res, err.message, 500);
+    response.error(req, res, error.message, 500);
   }
 };
 
