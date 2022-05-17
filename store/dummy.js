@@ -11,11 +11,11 @@ const get = async (table, id) => {
   return col.find((item) => item.id === id) || null;
 };
 
-function upsert(table, data) {
+const upsert = (table, data) => {
   db[collection].push(data);
 }
 
-function remove(table, id) {
+const remove = (table, id) => {
   return true;
 }
 

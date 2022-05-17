@@ -14,6 +14,7 @@ module.exports = (injectedStore = store) => {
 
   const upsert = (body) => {
     const user = {
+      username: body.username,
       name: body.name,
     };
 
@@ -23,7 +24,7 @@ module.exports = (injectedStore = store) => {
       user.id = nanoid();
     }
 
-    return store.upsert(TABLA, user);
+    return store.upsert(TABLE, user);
   };
 
   return {
