@@ -1,7 +1,8 @@
 const db = {
   user: [
     {
-      id: 1,
+      id: "1",
+      name: "Alucard",
       username: "Dracula",
       password: "12345",
     },
@@ -32,7 +33,8 @@ const remove = async (table, id) => {
 const query = async (table, q) => {
   const col = await list(table);
 
-  const key = Object.keys(q)[0];
+  const keys = Object.keys(q);
+  const key = keys[0];
 
   return col.find((item) => item[key] === q[key]) || null;
 };

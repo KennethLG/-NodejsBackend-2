@@ -15,21 +15,17 @@ module.exports = (injectedStore = store) => {
 
   const upsert = async (body) => {
     const user = {
-      username: body.username,
       name: body.name,
+      username: body.username,
     };
 
-    if (body.id) {
-      user.id = body.id;
-    } else {
-      user.id = nanoid();
-    }
+    user.id = body.id || nanoid();
 
     if (body.password || body.username) {
       await auth.upsert({
         id: user.id,
         username: user.username,
-        password: user.password
+        password: body.password
       })
     }
 
