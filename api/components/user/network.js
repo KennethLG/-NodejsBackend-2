@@ -1,4 +1,5 @@
 const express = require("express");
+const secure = require("./secure");
 const response = require("../../../network/response");
 const Controller = require("./index");
 
@@ -36,6 +37,6 @@ const upsert = async (req, res) => {
 router.get("/", list);
 router.get("/:id", get);
 router.post("/", upsert);
-router.put("/", upsert);
+router.put("/", secure("update"), upsert);
 
 module.exports = router;
