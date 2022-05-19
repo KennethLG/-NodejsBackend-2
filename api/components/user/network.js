@@ -11,25 +11,25 @@ const list = async (req, res, next) => {
     const list = await Controller.list();
     response.success(req, res, list, 200);
   } catch (error) {
-    next();
+    next(error);
   }
 };
 
-const get = async (req, res) => {
+const get = async (req, res, next) => {
   try {
     const user = await Controller.get(req.params.id);
     response.success(req, res, user, 200);
   } catch (error) {
-    next();
+    next(error);
   }
 };
 
-const upsert = async (req, res) => {
+const upsert = async (req, res, next) => {
   try {
     const user = await Controller.upsert(req.body);
     response.success(req, res, user, 201);
   } catch (error) {
-    next();
+    next(error);
   }
 };
 

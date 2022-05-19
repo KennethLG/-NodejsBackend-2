@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const auth = require("../../../auth");
 const TABLE = "auth";
+const store = require("../../../store/dummy");
 
 module.exports = (injectedStore) => {
-  const store = injectedStore || require("../../../store/dummy.js");
 
   const login = async (username, password) => {
-    const data = await store.query(TABLE, { username });
+    const data = await injectedStore.query(TABLE, { username });
 
     const compare = await bcrypt.compare(password, data.password);
 
@@ -31,9 +31,7 @@ module.exports = (injectedStore) => {
       authData.password = await bcrypt.hash(data.password, 5);
     }
 
-    console.log("user", authData);
-
-    return store.upsert(TABLE, authData);
+    return injectedStore.upsert(TABLE, authData);
   };
 
   return {

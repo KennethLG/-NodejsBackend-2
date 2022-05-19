@@ -4,7 +4,7 @@ const { nanoid } = require("nanoid");
 
 const TABLE = "user";
 
-module.exports = (injectedStore = store) => {
+module.exports = (injectedStore) => {
   const list = () => {
     return injectedStore.list(TABLE);
   };
@@ -29,7 +29,7 @@ module.exports = (injectedStore = store) => {
       })
     }
 
-    return store.upsert(TABLE, user);
+    return injectedStore.upsert(TABLE, user);
   };
 
   return {
