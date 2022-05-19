@@ -6,12 +6,12 @@ const Controller = require("./index");
 const router = express.Router();
 
 // Internal functions
-const list = async (req, res) => {
+const list = async (req, res, next) => {
   try {
     const list = await Controller.list();
     response.success(req, res, list, 200);
   } catch (error) {
-    response.error(req, res, error.message, 500);
+    next();
   }
 };
 
@@ -20,7 +20,7 @@ const get = async (req, res) => {
     const user = await Controller.get(req.params.id);
     response.success(req, res, user, 200);
   } catch (error) {
-    response.error(req, res, error.message, 500);
+    next();
   }
 };
 
@@ -29,7 +29,7 @@ const upsert = async (req, res) => {
     const user = await Controller.upsert(req.body);
     response.success(req, res, user, 201);
   } catch (error) {
-    response.error(req, res, error.message, 500);
+    next();
   }
 };
 
